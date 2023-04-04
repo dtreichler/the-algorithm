@@ -220,7 +220,15 @@ object HomeTweetTypePredicates {
       _.getOrElse(ConversationModule2DisplayedTweetsFeature, false)),
     ("conversation_module_has_gap", _.getOrElse(ConversationModuleHasGapFeature, false)),
     ("served_in_recap_tweet_candidate_module_injection", _ => false),
-    ("served_in_threaded_conversation_module", _ => false)
+    ("served_in_threaded_conversation_module", _ => false),
+    /**
+     * Jan pls
+    */
+    (
+      "author_is_jan",
+      candidate =>
+        candidate
+          .getOrElse(AuthorIdFeature, None).contains(candidate.getOrElse(DDGStatsJanFeature, 0L)))
   )
 
   val PredicateMap = CandidatePredicates.toMap
